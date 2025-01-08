@@ -242,6 +242,15 @@ class BigDecimal < Numeric
     self.class.new(bignumber.JS.trunc)
   end
 
+  def trunc(other = nil)
+    if other.nil?
+      self.class.new(bignumber.JS.trunc)
+    else
+      other, _ = coerce(other)
+      self.class.new(bignumber.JS.round(other, ROUND_MODE))
+    end
+  end
+
   alias === ==
   alias + add
   alias - minus
@@ -250,5 +259,5 @@ class BigDecimal < Numeric
   alias ** power
   alias pow power
   alias inspect to_s
-  alias truncate fix
+  alias truncate trunc
 end
