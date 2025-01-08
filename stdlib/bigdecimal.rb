@@ -247,7 +247,7 @@ class BigDecimal < Numeric
       self.class.new(bignumber.JS.trunc)
     else
       other, _ = coerce(other)
-      self.class.new(bignumber.JS.round(other, ROUND_MODE))
+      self.class.new(bignumber.JS.round(other, ROUND_DOWN))
     end
   end
 
